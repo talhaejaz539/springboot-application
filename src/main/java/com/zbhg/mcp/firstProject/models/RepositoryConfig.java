@@ -12,18 +12,17 @@ public class RepositoryConfig {
     public ItemRepository itemRepository() {
         return new ItemRepository() {
             @Override
-            public <S extends Item> S save(S s) {
-                System.out.println("save method");
+            public <S extends ItemEntity> S save(S s) {
                 return null;
             }
 
             @Override
-            public <S extends Item> Iterable<S> saveAll(Iterable<S> iterable) {
+            public <S extends ItemEntity> Iterable<S> saveAll(Iterable<S> iterable) {
                 return null;
             }
 
             @Override
-            public Optional<Item> findById(Integer integer) {
+            public Optional<ItemEntity> findById(Integer integer) {
                 return Optional.empty();
             }
 
@@ -33,12 +32,12 @@ public class RepositoryConfig {
             }
 
             @Override
-            public Iterable<Item> findAll() {
+            public Iterable<ItemEntity> findAll() {
                 return null;
             }
 
             @Override
-            public Iterable<Item> findAllById(Iterable<Integer> iterable) {
+            public Iterable<ItemEntity> findAllById(Iterable<Integer> iterable) {
                 return null;
             }
 
@@ -52,7 +51,7 @@ public class RepositoryConfig {
             }
 
             @Override
-            public void delete(Item item) {
+            public void delete(ItemEntity item) {
             }
 
             @Override
@@ -61,7 +60,7 @@ public class RepositoryConfig {
             }
 
             @Override
-            public void deleteAll(Iterable<? extends Item> iterable) {
+            public void deleteAll(Iterable<? extends ItemEntity> iterable) {
 
             }
 
