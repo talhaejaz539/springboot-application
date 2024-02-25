@@ -6,8 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "Items")
-public class Item {
+@Table(name = "items")
+public class ItemEntity {
     @Id
     @Column(name = "ItemId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,7 @@ public class Item {
     @CreationTimestamp
     private Date creationDate;
 
-    @Column(name = "category")
-    private String category;
-
-    public Item() {
+    public ItemEntity() {
     }
 
     public int getItemId() {
@@ -73,11 +70,4 @@ public class Item {
         this.creationDate = creationDate;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }
