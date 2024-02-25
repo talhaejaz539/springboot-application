@@ -20,6 +20,7 @@ public class FirstController {
 
     @GetMapping(path = "/")
     public @ResponseBody String sayHello() {
+        System.out.println("Starting");
         return "Hello World";
     }
 
