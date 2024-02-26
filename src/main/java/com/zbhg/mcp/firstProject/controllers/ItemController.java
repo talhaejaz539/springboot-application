@@ -51,7 +51,7 @@ public class ItemController {
         return "Item Updated";
     }
 
-    @DeleteMapping(path = "deleteItemById")
+    @DeleteMapping(path = "/deleteItemById")
     public @ResponseBody String deleteItemById(@RequestParam int id) {
         if(itemRepository.existsById(id)) {
             itemRepository.deleteById(id);
