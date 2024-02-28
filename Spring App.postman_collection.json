@@ -78,6 +78,40 @@
 			"response": []
 		},
 		{
+			"name": "Update Item By Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"description\": \"Apple\",\r\n  \"price\": 500,\r\n  \"quantity\": 50    \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/updateItemById?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"updateItemById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Item By Id",
 			"request": {
 				"method": "DELETE",
@@ -103,13 +137,13 @@
 			"response": []
 		},
 		{
-			"name": "Update Item By Id",
+			"name": "Add Customer",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\": \"Apple\",\r\n  \"price\": 500,\r\n  \"quantity\": 50    \r\n}\r\n",
+					"raw": "{\r\n    \"name\": \"Talha\",\r\n    \"address\": \"Eden\",\r\n    \"phone\": \"03032222196\",\r\n    \"email\": \"tejaz01@i2cinc.com\",\r\n    \"amountPayable\": 25,\r\n    \"salesLimit\": 15000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -117,14 +151,110 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:9090/updateItemById?id=4",
+					"raw": "localhost:9090/addCustomer",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Customers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/allCustomers",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "9090",
 					"path": [
-						"updateItemById"
+						"allCustomers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Customer By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/findCustomerById?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"findCustomerById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Customer By Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Talha Ejaz\",\r\n    \"address\": \"Eden Lahore\",\r\n    \"phone\": \"03331469946\",\r\n    \"email\": \"tejaz@i2cinc.com\",\r\n    \"salesLimit\": 35000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/updateCustomerById?id=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"updateCustomerById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Customer By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/deleteCustomerById?id=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"deleteCustomerById"
 					],
 					"query": [
 						{

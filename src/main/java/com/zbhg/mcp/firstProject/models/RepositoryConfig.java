@@ -70,4 +70,69 @@ public class RepositoryConfig {
             }
         }; // Or create an instance of your repository implementation
     }
+
+    @Bean
+    public CustomerRepository customerRepository() {
+        return new CustomerRepository() {
+            @Override
+            public <S extends CustomerEntity> S save(S entity) {
+                return null;
+            }
+
+            @Override
+            public <S extends CustomerEntity> Iterable<S> saveAll(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public Optional<CustomerEntity> findById(Integer integer) {
+                return Optional.empty();
+            }
+
+            @Override
+            public boolean existsById(Integer integer) {
+                return false;
+            }
+
+            @Override
+            public Iterable<CustomerEntity> findAll() {
+                return null;
+            }
+
+            @Override
+            public Iterable<CustomerEntity> findAllById(Iterable<Integer> integers) {
+                return null;
+            }
+
+            @Override
+            public long count() {
+                return 0;
+            }
+
+            @Override
+            public void deleteById(Integer integer) {
+
+            }
+
+            @Override
+            public void delete(CustomerEntity entity) {
+
+            }
+
+            @Override
+            public void deleteAllById(Iterable<? extends Integer> integers) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends CustomerEntity> entities) {
+
+            }
+
+            @Override
+            public void deleteAll() {
+
+            }
+        };
+    }
 }
