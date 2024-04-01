@@ -450,6 +450,81 @@ public class RepositoryConfig {
             public <S extends SaleLineItemEntity, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
                 return null;
             }
+
+            @Override
+            public List<SaleLineItemEntity> findAllByOrderId(Integer integer) {
+                return null;
+            }
+        };
+    }
+
+    @Bean
+    public ReceiptRepository receiptRepository() {
+        return new ReceiptRepository() {
+            @Override
+            public List<ReceiptEntity> findAllPaymentsByOrderId(Integer integer) {
+                return null;
+            }
+
+            @Override
+            public <S extends ReceiptEntity> S save(S entity) {
+                return null;
+            }
+
+            @Override
+            public <S extends ReceiptEntity> Iterable<S> saveAll(Iterable<S> entities) {
+                return null;
+            }
+
+            @Override
+            public Optional<ReceiptEntity> findById(Integer integer) {
+                return Optional.empty();
+            }
+
+            @Override
+            public boolean existsById(Integer integer) {
+                return false;
+            }
+
+            @Override
+            public Iterable<ReceiptEntity> findAll() {
+                return null;
+            }
+
+            @Override
+            public Iterable<ReceiptEntity> findAllById(Iterable<Integer> integers) {
+                return null;
+            }
+
+            @Override
+            public long count() {
+                return 0;
+            }
+
+            @Override
+            public void deleteById(Integer integer) {
+
+            }
+
+            @Override
+            public void delete(ReceiptEntity entity) {
+
+            }
+
+            @Override
+            public void deleteAllById(Iterable<? extends Integer> integers) {
+
+            }
+
+            @Override
+            public void deleteAll(Iterable<? extends ReceiptEntity> entities) {
+
+            }
+
+            @Override
+            public void deleteAll() {
+
+            }
         };
     }
 }
