@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"description\": \"Apple\",\r\n  \"price\": 500,\r\n  \"quantity\": 20    \r\n}\r\n",
+					"raw": "{\r\n  \"description\": \"Pineapple\",\r\n  \"price\": 800,\r\n  \"quantity\": 70    \r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -143,7 +143,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Talha\",\r\n    \"address\": \"Eden\",\r\n    \"phone\": \"03032222196\",\r\n    \"email\": \"tejaz01@i2cinc.com\",\r\n    \"amountPayable\": 25,\r\n    \"salesLimit\": 15000\r\n}",
+					"raw": "{\r\n    \"name\": \"Talha\",\r\n    \"address\": \"Eden\",\r\n    \"phone\": \"03032222196\",\r\n    \"email\": \"tejaz01@i2cinc.com\",\r\n    \"amountPayable\": 0,\r\n    \"salesLimit\": 15000\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -247,7 +247,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9090/deleteCustomerById?id=4",
+					"raw": "http://localhost:9090/deleteCustomerById?id=6",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -259,7 +259,125 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "4"
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Sale",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"itemId\": 3,\r\n        \"quantity\": 5,\r\n        \"price\": 600\r\n    },\r\n    {\r\n        \"itemId\": 4,\r\n        \"quantity\": 7,\r\n        \"price\": 800\r\n    }\r\n]\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/addSale?customerId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"addSale"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Amount of Sale",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/totalAmountOfSale?oderId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"totalAmountOfSale"
+					],
+					"query": [
+						{
+							"key": "oderId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paid Amount of Sale",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/paidAmountOfSale?oderId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"paidAmountOfSale"
+					],
+					"query": [
+						{
+							"key": "oderId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paymentAmount\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9090/makePayment?customerId=1&orderId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"makePayment"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "1"
+						},
+						{
+							"key": "orderId",
+							"value": "1"
 						}
 					]
 				}
