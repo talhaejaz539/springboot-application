@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -35,7 +34,7 @@ public class ItemController {
     }
 
     @PutMapping(path = "/updateItemById")
-    public @ResponseBody String updateItemById(@RequestParam int id, @RequestBody ItemEntity item) {
+    public @ResponseBody Optional<ItemEntity> updateItemById(@RequestParam int id, @RequestBody ItemEntity item) {
 
         Optional<ItemEntity> optionalItem = itemRepository.findById(id);
 
@@ -45,20 +44,16 @@ public class ItemController {
             existingItem.setPrice(item.getPrice());
             existingItem.setQuantity(item.getQuantity());
             itemRepository.save(existingItem);
-        } else {
-            return "Item does not exist";
+            return Optional.of(existingItem);
         }
-        return "Item Updated";
+        return Optional.ofNullable(item);
     }
 
     @DeleteMapping(path = "/deleteItemById")
-    public @ResponseBody String deleteItemById(@RequestParam int id) {
-        if(itemRepository.existsById(id)) {
-            itemRepository.deleteById(id);
-        } else {
-            return "Item does not exist";
-        }
-        return "Item Deleted";
+    public @ResponseBody Optional<ItemEntity> deleteItemById(@RequestParam int id) {
+        Optional<ItemEntity> itemEntity = itemRepository.findById(id);
+        itemRepository.deleteById(id);
+        return itemEntity;
     }
 
 }
