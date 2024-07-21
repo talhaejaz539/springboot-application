@@ -36,6 +36,7 @@ public class ItemController {
     @PutMapping(path = "/updateItemById")
     public @ResponseBody Optional<ItemEntity> updateItemById(@RequestParam int id, @RequestBody ItemEntity item) {
 
+        System.out.println("Update Item ");
         Optional<ItemEntity> optionalItem = itemRepository.findById(id);
 
         if(optionalItem.isPresent()) {
