@@ -57,15 +57,71 @@
                 })
         }
 
+        // Function to fetch customers from backend and populate the table
+        function fetchCustomers() {
+            const customersTable = document.getElementById('customerTable').getElementsByTagName('tbody')[0];
+            customersTable.innerHTML = ''; // Clear existing rows
+            // Example data for demonstration
+            const customersUrl = '/allCustomers'
+            fetch(customersUrl)
+                .then(response => {
+                    // Check if the response is successful
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    // Parse JSON data from the response
+                    return response.json();
+                })
+                .then(customers => {
+                    console.log(customers);
+
+                    if(customers.length == 0) {
+                        const row = customersTable.insertRow();
+                        row.innerHTML = `<p style="font-weight: bold; height: 50px; vertical-align: bottom;">No Customer Registered</p>`;
+                    } else {
+                        customers.forEach(customer => {
+                            const row = customersTable.insertRow();
+                            row.innerHTML = `
+                            <td>${customer.customerId}</td>
+                            <td>${customer.name}</td>
+                            <td>${customer.email}</td>
+                            <td>${customer.phone}</td>
+                            <td>${customer.address}</td>
+                            <td>${customer.salesLimit}</td>
+                            <td>${customer.amountPayable}</td>
+                            <td>
+                                <button class="btn" onclick="openUpdateModal(${customer.customerId}, '${customer.name}', ${customer.email}, ${customer.phone}, ${customer.address}, , ${customer.salesLimit})">Edit</button>
+                                <button class="btn" onclick="deleteItem(${customer.customerId})">Delete</button>
+                            </td>
+                            `;
+                        });
+                    }
+                })
+        }
+
+//        // Initial fetch of items when the page loads
+//        fetchItems();
+//
+//        // Initial fetch of customers when the page loads
+//        fetchCustomers();
+
         // Function to open Create Modal
         function openCreateModal() {
             document.getElementById('createModal').style.display = 'block';
         }
 
-        // Function to close Create Modal
-        document.getElementById('closeCreateModal').onclick = function() {
-            document.getElementById('createModal').style.display = 'none';
+        function openCreateCustomerModal() {
+            document.getElementById('createCustomerModal').style.display = 'block';
         }
+
+        // Function to close Create Modal
+        // document.getElementById('closeCreateModal').onclick = function() {
+        //     document.getElementById('createModal').style.display = 'none';
+        // }
+        //
+        // document.getElementById('closeCreateCustomerModal').onclick = function() {
+        //     document.getElementById('createCustomerModal').style.display = 'none';
+        // }
 
         // Function to open Update Modal and pre-fill data
         function openUpdateModal(id, description, price, quantity) {
@@ -114,6 +170,8 @@
                     if (!response.ok) {
                         throw new Error('Failed to add item');
                     }
+                    // Reset form fields
+                    document.getElementById('createForm').reset();
                     // Close modal after successful creation
                     document.getElementById('createModal').style.display = 'none';
                     // Refresh the table after Creation
@@ -173,29 +231,34 @@
 
         // Function to handle Delete operation
         function deleteItem(itemId) {
-            // Make API call to delete item
-            fetch(`/deleteItemById?id=${itemId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Item deleted successfully:', data);
-                displayMessage('Item deleted successfully.', 2000); // Display for 2 seconds
-                // Refresh the table after deletion
-                fetchItems();
-            })
-            .catch(error => {
-                console.error('Error deleting item:', error);
-                displayMessage('Error deleting item.', 2000);
-            });
+
+            if(confirm("Are you sure you want to delete this item?")) {
+                // want to check yes or no
+
+                // Make API call to delete item
+                fetch(`/deleteItemById?id=${itemId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Item deleted successfully:', data);
+                        displayMessage('Item deleted successfully.', 2000); // Display for 2 seconds
+                        // Refresh the table after deletion
+                        fetchItems();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting item:', error);
+                        displayMessage('Error deleting item.', 2000);
+                    });
+            }
         }
 
         // Function to display a message on the screen for a specified duration
@@ -215,5 +278,3 @@
             }, duration);
         }
 
-        // Initial fetch of items when the page loads
-        fetchItems();
